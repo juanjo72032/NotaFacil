@@ -11,15 +11,23 @@ interface Props {
   icon?: React.ReactNode;
 }
 
-export function Boton({ label, onPress, color = '#2563EB', textColor = '#FFFFFF', style, textStyle, icon }: Props) {
-  const [isPressed, setIsPressed] = useState(false);
+export function Boton({
+  label,
+  onPress,
+  color = '#2563EB',
+  textColor = '#FFFFFF',
+  style,
+  textStyle,
+  icon,
+}: Props) {
+  const [pressed, setPressed] = useState(false);
 
   return (
     <TouchableOpacity
       onPress={onPress}
-      onPressIn={() => setIsPressed(true)}
-      onPressOut={() => setIsPressed(false)}
-      style={[styles.button, { backgroundColor: isPressed ? '#1D4ED8' : color }, style]}
+      onPressIn={() => setPressed(true)}
+      onPressOut={() => setPressed(false)}
+      style={[styles.button, { backgroundColor: pressed ? '#1D4ED8' : color }, style]}
       activeOpacity={0.85}
     >
       {icon}
@@ -30,18 +38,14 @@ export function Boton({ label, onPress, color = '#2563EB', textColor = '#FFFFFF'
 
 const styles = StyleSheet.create({
   button: {
-    height: 52,
+    height: 50,
     borderRadius: 14,
     flexDirection: 'row',
     justifyContent: 'center',
     alignItems: 'center',
-    paddingHorizontal: 20,
-    shadowColor: '#2563EB',
-    shadowOffset: { width: 0, height: 4 },
-    shadowOpacity: 0.2,
-    shadowRadius: 8,
-    elevation: 3,
+    paddingHorizontal: 18,
     gap: 8,
+    elevation: 2,
   },
-  text: { fontSize: 16, fontWeight: '700' },
+  text: { fontSize: 15, fontWeight: '700' },
 });
